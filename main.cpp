@@ -273,6 +273,62 @@ void showcartp2()
     cout<<"rival display room is " << player1.namayeshgah[0] << " " << player1.nameofcartn[0] << player1.namayeshgah[1] << " " << player1.nameofcartn[1];
     cout<< player1.namayeshgah[2] << " " << player1.nameofcartn[2] <<player1.namayeshgah[3] << " " << player1.nameofcartn[3] << player1.namayeshgah[4] << " " << player1.nameofcartn[4] << player1.namayeshgah[5] << " " << player1.nameofcartn[5]<<endl;
 }
+
+void fillanddel(int cp, int wc)
+{
+    if(cp == 1)
+    {
+        int r = (rand() % 3) + 1;
+        switch (r)
+        {
+        int n;
+        case 1 :
+            player1.namofcart[wc] = "kalekado";
+             n = rand() % 30;
+            player1.numofcart[wc] = kalekado.pointofcart[n];
+            kalekado.deletenum(n);
+            break;
+        case 2 :
+            player1.namofcart[wc] = "gorbegor";
+             n = rand() % 30;
+            player1.numofcart[wc] = gorbegor.pointofcart[n];
+            gorbegor.deletenum(n);
+            break;
+        case 3 :
+            player1.namofcart[wc] = "kohnepich";
+             n = rand() % 30;
+            player1.numofcart[wc] = kohnepich.pointofcart[n];
+            kohnepich.deletenum(n);
+            break;
+        }
+    }
+    else if(cp == 2)
+    {
+        int r= (rand() % 3) + 1;
+        switch (r)
+        {
+        int n;
+        case 1 :
+            player2.namofcart[wc] = "kalekado";
+             n = rand() % 30;
+            player2.numofcart[wc] = kalekado.pointofcart[n];
+            kalekado.deletenum(n);
+            break;
+        case 2 :
+            player2.namofcart[wc] = "gorbegor";
+             n = rand() % 30;
+            player2.numofcart[wc] = gorbegor.pointofcart[n];
+            gorbegor.deletenum(n);
+            break;
+        case 3 :
+            player2.namofcart[wc] = "kohnepich";
+             n = rand() % 30;
+            player2.numofcart[wc] = kohnepich.pointofcart[n];
+            kohnepich.deletenum(n);
+            break;
+        }
+    }
+}
 void play()
 {
     bool p = true;
@@ -303,6 +359,108 @@ void play()
             {
                 player1.namayeshgah[i] = player1.numofcart[wc];
                 player1.nameofcartn[i] = player1.namofcart[wc];
+                fillanddel(cupl, wc);
+                i++;
+            }
+            else if(no == 2)
+            {
+                int u;
+                cout<< " 1 to 6 please enter your choice for colition ";
+                cin >> u;
+                if(player1.nameofcartn[u] == player1.namofcart[wc])
+                {
+                    player1.namayeshgah[u] = player1.numofcart[wc];
+                    fillanddel(cupl, wc);
+                }
+                else
+                {
+                    cout << "you wrong !";
+                    continue;
+                }
+            }
+        }
+        else if(cupl==2)
+        {
+            if(no == 1)
+            {
+                player2.namayeshgah[j] = player2.numofcart[wc];
+                player2.nameofcartn[j] = player2.namofcart[wc];
+                fillanddel(cupl, wc);
+                j++;
+            }
+            else if(no == 2)
+            {
+                int u;
+                cout<< " 1 to 6 please enter your choice for colition ";
+                cin >> u;
+                if(player2.nameofcartn[u] == player2.namofcart[wc])
+                {
+                    player2.namayeshgah[u] = player2.numofcart[wc];
+                    fillanddel(cupl, wc);
+                }
+                else
+                {
+                    cout << "you wrong !";
+                    continue;
+                }
+            }
+        }
+    }
+    else if(yr==2)
+    {
+        int no;
+        cout << "(1) for new display room (2) for old "<<endl;
+        cin>>no;
+        if(cupl==1)
+        {
+            if(no == 1)
+            {
+                player2.namayeshgah[j] = player1.numofcart[wc];
+                player2.nameofcartn[j] = player1.namofcart[wc];
+                fillanddel(cupl, wc);
+                j++;
+            }
+            else if(no == 2)
+            {
+                int u;
+                cout<< " 1 to 6 please enter your choice for colition ";
+                cin >> u;
+                if(player2.nameofcartn[u] == player1.namofcart[wc])
+                {
+                    player2.namayeshgah[u] = player1.numofcart[wc];
+                    fillanddel(cupl, wc);
+                }
+                else
+                {
+                    cout << "you wrong !";
+                    continue;
+                }
+            }
+        }
+        else if(cupl==2)
+        {
+            if(no == 1)
+            {
+                player1.namayeshgah[i] = player2.numofcart[wc];
+                player1.nameofcartn[i] = player2.namofcart[wc];
+                fillanddel(cupl, wc);
+                i++;
+            }
+            else if(no == 2)
+            {
+                int u;
+                cout<< " 1 to 6 please enter your choice for colition ";
+                cin >> u;
+                if(player1.nameofcartn[u] == player2.namofcart[wc])
+                {
+                    player1.namayeshgah[u] = player2.numofcart[wc];
+                    fillanddel(cupl, wc);
+                }
+                else
+                {
+                    cout << "you wrong !";
+                    continue;
+                }
             }
         }
     }
