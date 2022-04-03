@@ -4,7 +4,9 @@
 #include <cstdlib>
 
 using namespace  std;
-int cupl ;
+int cupl;
+int pointofp1;
+int pointofp2;
 
 struct kalekado
 {
@@ -354,6 +356,55 @@ void twoinonesame()
         }
     }
 }
+void calculatepoint()
+{
+    int ka1=0,go1=0,ko1=0;
+    int ka2=0,go2=0,ko2=0;
+    for(int i=0; i<6; i++)
+    {
+        if(player1.nameofcartn[i]=="kalekado")
+            ka1++;
+        if(player1.nameofcartn[i]=="gorbegor")
+            go1++;
+        if(player1.nameofcartn[i]=="kohnepich")
+            ko1++;
+        if(player2.nameofcartn[i]=="kalekado")
+            ka2++;
+        if(player2.nameofcartn[i]=="gorbegor")
+            go2++;
+        if(player2.nameofcartn[i]=="kohnepich")
+            ko2++;
+
+    }
+
+    if(ka1==0 || go1==0 || ko1==0)
+        pointofp1=0;
+    else
+        pointofp1= player1.namayeshgah[0] +player1.namayeshgah[1] +player1.namayeshgah[2] +player1.namayeshgah[3] +player1.namayeshgah[4] +player1.namayeshgah[5];
+
+    if(ka2==0 || go2==0 || ko2==0)
+        pointofp2=0;
+    else
+        pointofp2= player2.namayeshgah[0] +player2.namayeshgah[1] +player2.namayeshgah[2] +player2.namayeshgah[3] +player2.namayeshgah[4] +player2.namayeshgah[5];
+
+}
+bool win()
+{
+    if(player1.namayeshgah[0]!=0 && player1.namayeshgah[1]!=0 && player1.namayeshgah[2]!=0 && player1.namayeshgah[3]!=0 && player1.namayeshgah[4]!=0 && player1.namayeshgah[5]!=0 )
+    return true;
+    if(player2.namayeshgah[0]!=0 && player2.namayeshgah[1]!=0 && player2.namayeshgah[2]!=0 && player2.namayeshgah[3]!=0 && player2.namayeshgah[4]!=0 && player2.namayeshgah[5]!=0 )
+     return true;
+    else
+        return false;
+
+}
+void swap_player()
+{
+    if(cupl==1)
+        cupl=2;
+    else
+        cupl=1;
+}
 void play()
 {
     bool p = true;
@@ -490,14 +541,40 @@ void play()
         }
     }
         twoinonesame();
-
+        calculatepoint();
+        cout<< "point of p1 is " << pointofp1 << " and point of p2 is " << pointofp2;
+        if(pointofp1 > 50 && pointofp1 > pointofp2)
+        {
+            cout<<" p1 is win ";
+            break;
+        }
+        else if(pointofp2 > 50 && pointofp2 > pointofp1)
+        {
+            cout << "p2 is win ";
+            break;
+        }
+        bool t = win();
+        if(t)
+        {
+            if(pointofp1 > pointofp2)
+            {
+                cout<<" p1 is win ";
+                break;
+            }
+            else
+            {
+                cout << "p2 is win ";
+                break;
+            }
+        }
+        swap_player();
     }
 
 }
 
 int main()
 {
-
+    play();
 
     return 0;
 }
