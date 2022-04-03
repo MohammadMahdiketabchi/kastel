@@ -540,6 +540,7 @@ void play()
             }
         }
     }
+        system("cls");
         twoinonesame();
         calculatepoint();
         cout<< "point of p1 is " << pointofp1 << " and point of p2 is " << pointofp2;
