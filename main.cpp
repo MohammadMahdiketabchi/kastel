@@ -329,6 +329,31 @@ void fillanddel(int cp, int wc)
         }
     }
 }
+void twoinonesame()
+{
+    for(int i=1; i<6; i++)
+    {
+        for(int j=0; j<6; j++)
+        {
+            if(player1.nameofcartn[j]==player1.nameofcartn[i])
+            {
+                if(player1.namayeshgah[j]==player1.namayeshgah[i])
+                {
+                    player1.nameofcartn[i] = "";
+                    player1.namayeshgah[i] = 0;
+                }
+            }
+            if(player2.nameofcartn[j]==player2.nameofcartn[i])
+            {
+                if(player2.namayeshgah[j]==player2.namayeshgah[i])
+                {
+                    player2.nameofcartn[i] = "";
+                    player2.namayeshgah[i] = 0;
+                }
+            }
+        }
+    }
+}
 void play()
 {
     bool p = true;
@@ -464,6 +489,8 @@ void play()
             }
         }
     }
+        twoinonesame();
+
     }
 
 }
